@@ -28,7 +28,15 @@ const app = new Vue ({
                 day = date.getDate(),
                 month = months[date.getMonth()],
                 year = date.getFullYear(),
-                time = date.getHours() + ":" + date.getMinutes().toFixed(2);
+                time, minutes;
+
+                if ( date.getMinutes() < 10 ) {
+                    minutes = "0" + date.getMinutes();
+                } else {
+                    minutes = date.getMinutes();
+                }
+                
+                time = date.getHours() + ":" + minutes;
 
                 return month + " " + day + ", " + year + " - " + time;
             }
