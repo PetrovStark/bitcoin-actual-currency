@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Bitcoin Currency</title>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.css">
+        <link rel="stylesheet" href="css/index.css">
+    </head>
+    <body>
+        <div id="root" class="pt-6">
+            <main>
+                <h1 class="title">Bitcoin Actual Currency</h1>
+                <p class="data" :class="{show : 'show'}">{{ time | filter_date }} </p>
+                <div class="data main" :class="{show : 'show'}">
+                    <section v-if="errored">
+                        <notice status="is-danger">Sorry, some error on showing the currencies. Try it later.</notice>
+                    </section>
+                    <section v-else class="currency">
+                        <div v-if="loading">
+                          <notice status="is-info">Loading...</notice>
+                        </div>
+                        <div v-else v-for="currency in info">
+                            <p><span class="key">{{ currency.description }}:</span> <span v-html="currency.symbol"></span>{{ currency.rate_float | currency_decimal }} </p>
+                        </div>
+                    </section>
+                </div>
+            </main>
+            <footer>Powered by <a href="https://www.coindesk.com/coindesk-api" target="_blank">CoinDesk.</a> | Integrated by <a href="#">SamuraiPetrus.</a></footer>
+        </div>
+        <!-- Vue.js + Axios -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios@0.20.0/dist/axios.min.js"></script>
+
+        <script type="module" src="app/index.js"></script>
+    </body>
+</html>

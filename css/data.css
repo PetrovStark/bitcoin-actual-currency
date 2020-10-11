@@ -1,0 +1,11 @@
+.data{
+  display: none;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.data.main{
+  margin-top: 30px;
+}
+.data.show{
+  display: block;
+}
